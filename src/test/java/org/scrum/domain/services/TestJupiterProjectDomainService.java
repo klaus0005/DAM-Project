@@ -1,11 +1,9 @@
 package org.scrum.domain.services;
 
 import org.junit.jupiter.api.Test;
-import org.scrum.domain.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Collection;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

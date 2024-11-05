@@ -1,8 +1,6 @@
 package org.scrum.domain.services;
 
 import jakarta.annotation.PostConstruct;
-import org.scrum.domain.project.Project;
-import org.scrum.domain.project.Release;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

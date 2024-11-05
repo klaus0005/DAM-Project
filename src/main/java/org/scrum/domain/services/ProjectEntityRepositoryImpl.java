@@ -1,6 +1,5 @@
 package org.scrum.domain.services;
 
-import org.scrum.domain.project.Project;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

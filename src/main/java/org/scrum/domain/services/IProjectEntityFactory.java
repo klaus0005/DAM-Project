@@ -1,7 +1,5 @@
 package org.scrum.domain.services;
 
-import org.scrum.domain.project.Project;
-
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;

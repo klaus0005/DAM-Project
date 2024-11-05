@@ -1,7 +1,6 @@
 package org.scrum.domain.services;
 
 import org.scrum.domain.project.Feature;
-import org.scrum.domain.project.Project;
 
 import java.util.List;
 
