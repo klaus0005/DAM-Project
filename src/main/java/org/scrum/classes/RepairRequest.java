@@ -12,7 +12,7 @@ public class RepairRequest {
     private User technician;
     private List<String> repairActivities;
 
-    // Constructor
+
     public RepairRequest(int requestId, Equipment equipment, String issueDescription, Date requestDate, String status, User technician) {
         this.requestId = requestId;
         this.equipment = equipment;
@@ -22,7 +22,7 @@ public class RepairRequest {
         this.technician = technician;
     }
 
-    // Getters și Setters
+
     public int getRequestId() { return requestId; }
     public void setRequestId(int requestId) { this.requestId = requestId; }
 

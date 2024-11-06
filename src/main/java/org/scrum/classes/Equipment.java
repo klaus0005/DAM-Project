@@ -14,7 +14,7 @@ public class Equipment {
     private List<Maintenance> maintenanceHistory;
     private List<RepairRequest> repairHistory;
 
-    // Constructor
+
     public Equipment(int id, String name, String type, String status, Date acquisitionDate, double price, String location) {
         this.id = id;
         this.name = name;
@@ -25,7 +25,7 @@ public class Equipment {
         this.location = location;
     }
 
-    // Getters și Setters
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

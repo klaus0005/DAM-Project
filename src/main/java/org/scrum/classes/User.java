@@ -6,7 +6,7 @@ public class User {
     private String role;
     private String department;
 
-    // Constructor
+
     public User(int userId, String name, String role, String department) {
         this.userId = userId;
         this.name = name;
@@ -14,7 +14,7 @@ public class User {
         this.department = department;
     }
 
-    // Getters și Setters
+
     public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
 

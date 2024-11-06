@@ -9,7 +9,6 @@ public class Acquisition {
     private double totalAmount;
     private List<Equipment> equipmentList;
 
-    // Constructor
     public Acquisition(int acquisitionId, Date acquisitionDate, double totalAmount, List<Equipment> equipmentList) {
         this.acquisitionId = acquisitionId;
         this.acquisitionDate = acquisitionDate;
@@ -17,7 +16,7 @@ public class Acquisition {
         this.equipmentList = equipmentList;
     }
 
-    // Getters și Setters
+
     public int getAcquisitionId() { return acquisitionId; }
     public void setAcquisitionId(int acquisitionId) { this.acquisitionId = acquisitionId; }
 

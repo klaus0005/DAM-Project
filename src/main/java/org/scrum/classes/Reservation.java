@@ -9,7 +9,7 @@ public class Reservation {
     private Date reservationDate;
     private Date returnDate;
 
-    // Constructor
+
     public Reservation(int reservationId, Equipment equipment, User user, Date reservationDate, Date returnDate) {
         this.reservationId = reservationId;
         this.equipment = equipment;
@@ -18,7 +18,7 @@ public class Reservation {
         this.returnDate = returnDate;
     }
 
-    // Getters și Setters
+
     public int getReservationId() { return reservationId; }
     public void setReservationId(int reservationId) { this.reservationId = reservationId; }
 

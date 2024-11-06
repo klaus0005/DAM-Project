@@ -10,7 +10,7 @@ public class Report {
     private String content;
     private List<Equipment> equipmentList;
 
-    // Constructor
+
     public Report(int reportId, String reportType, Date generatedDate, String content, List<Equipment> equipmentList) {
         this.reportId = reportId;
         this.reportType = reportType;
@@ -19,7 +19,7 @@ public class Report {
         this.equipmentList = equipmentList;
     }
 
-    // Getters și Setters
+
     public int getReportId() { return reportId; }
     public void setReportId(int reportId) { this.reportId = reportId; }
 

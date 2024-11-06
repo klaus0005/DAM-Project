@@ -9,7 +9,7 @@ public class Maintenance {
     private String maintenanceType;
     private String description;
 
-    // Constructor
+
     public Maintenance(int maintenanceId, Equipment equipment, Date maintenanceDate, String maintenanceType, String description) {
         this.maintenanceId = maintenanceId;
         this.equipment = equipment;
@@ -18,7 +18,7 @@ public class Maintenance {
         this.description = description;
     }
 
-    // Getters și Setters
+
     public int getMaintenanceId() { return maintenanceId; }
     public void setMaintenanceId(int maintenanceId) { this.maintenanceId = maintenanceId; }
 
