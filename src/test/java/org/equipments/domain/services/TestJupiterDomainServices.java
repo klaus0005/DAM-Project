@@ -1,4 +1,4 @@
-package org.scrum.domain.services;
+package org.equipments.domain.services;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

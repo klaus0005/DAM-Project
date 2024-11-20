@@ -1,4 +1,4 @@
-package org.scrum.classes;
+package org.equipments.classes;
 
 public class User {
     private int userId;

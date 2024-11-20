@@ -1,4 +1,4 @@
-package org.scrum.classes;
+package org.equipments.classes;
 
 import java.util.Date;
 import java.util.List;
