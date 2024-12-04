@@ -1,22 +1,16 @@
 package org.equipments.classes;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data // Generează getter, setter, toString, equals, hashCode
+@NoArgsConstructor // Creează un constructor fără parametri
 public class MaintenanceSchedule {
-    private List<EquipmentMaintenance> schedule;
-
-    public MaintenanceSchedule() {
-        schedule = new ArrayList<>();
-    }
-
-    public List<EquipmentMaintenance> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(List<EquipmentMaintenance> schedule) {
-        this.schedule = schedule;
-    }
+    private List<EquipmentMaintenance> schedule = new ArrayList<>();
 
     public void addMaintenance(Equipment equipment, Maintenance maintenance) {
         EquipmentMaintenance equipmentMaintenance = findOrCreateEquipmentMaintenance(equipment);
@@ -43,30 +37,11 @@ public class MaintenanceSchedule {
         return newEntry;
     }
 
-    // Nested class to represent the relationship between Equipment and its Maintenances
+    @Data // Generează getter, setter, toString, equals, hashCode
+    @NoArgsConstructor // Creează un constructor fără parametri
+    @AllArgsConstructor // Creează un constructor cu toți parametrii
     public static class EquipmentMaintenance {
         private Equipment equipment;
         private List<Maintenance> maintenances;
-
-        public EquipmentMaintenance(Equipment equipment, List<Maintenance> maintenances) {
-            this.equipment = equipment;
-            this.maintenances = maintenances;
-        }
-
-        public Equipment getEquipment() {
-            return equipment;
-        }
-
-        public void setEquipment(Equipment equipment) {
-            this.equipment = equipment;
-        }
-
-        public List<Maintenance> getMaintenances() {
-            return maintenances;
-        }
-
-        public void setMaintenances(List<Maintenance> maintenances) {
-            this.maintenances = maintenances;
-        }
     }
 }

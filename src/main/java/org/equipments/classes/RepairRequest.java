@@ -1,8 +1,17 @@
 package org.equipments.classes;
 
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
+
 import java.util.Date;
 import java.util.List;
 
+@Data // Generează getter, setter, toString, equals, hashCode
+@AllArgsConstructor // Constructor cu toți parametrii
+@NoArgsConstructor // Constructor fără parametri
+@Builder // Permite utilizarea unui builder pattern
 public class RepairRequest {
     private int requestId;
     private Equipment equipment;
@@ -11,36 +20,4 @@ public class RepairRequest {
     private String status;
     private User technician;
     private List<String> repairActivities;
-
-
-    public RepairRequest(int requestId, Equipment equipment, String issueDescription, Date requestDate, String status, User technician) {
-        this.requestId = requestId;
-        this.equipment = equipment;
-        this.issueDescription = issueDescription;
-        this.requestDate = requestDate;
-        this.status = status;
-        this.technician = technician;
-    }
-
-
-    public int getRequestId() { return requestId; }
-    public void setRequestId(int requestId) { this.requestId = requestId; }
-
-    public Equipment getEquipment() { return equipment; }
-    public void setEquipment(Equipment equipment) { this.equipment = equipment; }
-
-    public String getIssueDescription() { return issueDescription; }
-    public void setIssueDescription(String issueDescription) { this.issueDescription = issueDescription; }
-
-    public Date getRequestDate() { return requestDate; }
-    public void setRequestDate(Date requestDate) { this.requestDate = requestDate; }
-
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
-    public User getTechnician() { return technician; }
-    public void setTechnician(User technician) { this.technician = technician; }
-
-    public List<String> getRepairActivities() { return repairActivities; }
-    public void setRepairActivities(List<String> repairActivities) { this.repairActivities = repairActivities; }
 }
