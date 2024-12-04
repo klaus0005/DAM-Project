@@ -5,10 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
-@Data // Generează getter, setter, toString, equals, hashCode
-@AllArgsConstructor // Constructor cu toți parametrii
-@NoArgsConstructor // Constructor fără parametri
-@Builder // Permite utilizarea unui builder pattern
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
     private int userId;
     private String name;

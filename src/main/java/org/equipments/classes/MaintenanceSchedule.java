@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data // Generează getter, setter, toString, equals, hashCode
-@NoArgsConstructor // Creează un constructor fără parametri
+@Data
+@NoArgsConstructor
 public class MaintenanceSchedule {
     private List<EquipmentMaintenance> schedule = new ArrayList<>();
 
@@ -37,9 +37,9 @@ public class MaintenanceSchedule {
         return newEntry;
     }
 
-    @Data // Generează getter, setter, toString, equals, hashCode
-    @NoArgsConstructor // Creează un constructor fără parametri
-    @AllArgsConstructor // Creează un constructor cu toți parametrii
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class EquipmentMaintenance {
         private Equipment equipment;
         private List<Maintenance> maintenances;

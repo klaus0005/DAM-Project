@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Data // Generează getter, setter, toString, equals, hashCode
-@AllArgsConstructor // Creează un constructor cu toți parametrii
-@NoArgsConstructor // Creează un constructor fără parametri
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Maintenance {
     private int maintenanceId;
     private Equipment equipment;
