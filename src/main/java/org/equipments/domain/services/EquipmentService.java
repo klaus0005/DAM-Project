@@ -9,4 +9,12 @@ public interface EquipmentService {
     Equipment addEquipment(Equipment equipment);
     Equipment updateEquipment(int id, Equipment equipment);
     void deleteEquipment(int id);
+
+    List<Equipment> getEquipmentByStatus(String status);
+    List<Equipment> getEquipmentByLocation(String location);
+
+    double calculateTotalValue();
+    Equipment findMostExpensiveEquipment();
+    boolean isEquipmentAvailable(int id);
+    List<Equipment> filterByPriceRange(double minPrice, double maxPrice);
 }

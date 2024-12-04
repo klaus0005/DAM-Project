@@ -14,4 +14,8 @@ public class User {
     private String name;
     private String role;
     private String department;
+
+    public User(int i, String johnDoe, String mail) {
+
+    }
 }

@@ -22,4 +22,7 @@ public class Equipment {
     private String location;
     private List<Maintenance> maintenanceHistory;
     private List<RepairRequest> repairHistory;
+
+    public Equipment(int id, String name, String type, String status, String location, double price) {
+    }
 }
