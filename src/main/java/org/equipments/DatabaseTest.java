@@ -3,16 +3,88 @@ package org.equipments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.equipments.classes.Equipment;
+import org.equipments.classes.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Component
 public class DatabaseTest implements CommandLineRunner {
 
-    @Autowired
-    private equipment equipment;
-
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Număr de utilizatori în baza de date: " + user.count());
+        // Crearea unei liste de echipamente
+        List<Equipment> equipmentList = new ArrayList<>();
+
+        // Popularea listei de echipamente
+        Equipment equipment1 = Equipment.builder()
+                .id(1)
+                .name("Excavator")
+                .type("Heavy Machinery")
+                .status("Available")
+                .acquisitionDate(new Date())
+                .price(50000.0)
+                .location("Warehouse A")
+                .maintenanceHistory(new ArrayList<>())
+                .repairHistory(new ArrayList<>())
+                .build();
+
+        Equipment equipment2 = Equipment.builder()
+                .id(2)
+                .name("Bulldozer")
+                .type("Heavy Machinery")
+                .status("In Use")
+                .acquisitionDate(new Date())
+                .price(75000.0)
+                .location("Warehouse B")
+                .maintenanceHistory(new ArrayList<>())
+                .repairHistory(new ArrayList<>())
+                .build();
+
+        // Adăugarea echipamentelor în listă
+        equipmentList.add(equipment1);
+        equipmentList.add(equipment2);
+
+        // Afișarea echipamentelor
+        System.out.println("Lista de echipamente:");
+        for (Equipment equipment : equipmentList) {
+            System.out.println(equipment);
+        }
+
+        // Crearea unei achiziții care conține echipamentele
+        Acquisition acquisition = Acquisition.builder()
+                .acquisitionId(1)
+                .acquisitionDate(new Date())
+                .totalAmount(125000.0)
+                .equipmentList(equipmentList)
+                .build();
+
+        System.out.println("\nAchiziția creată:");
+        System.out.println(acquisition);
+
+        // Crearea unui catalog de echipamente și adăugarea echipamentelor
+        EquipmentCatalog catalog = new EquipmentCatalog();
+        catalog.addEquipment(equipment1);
+        catalog.addEquipment(equipment2);
+
+        System.out.println("\nEchipamente disponibile în catalog:");
+        List<Equipment> availableEquipment = catalog.getAvailableEquipment();
+        for (Equipment eq : availableEquipment) {
+            System.out.println(eq);
+        }
+
+        // Crearea unei reparații și adăugarea activităților de reparație
+        RepairRequest repairRequest = RepairRequest.builder()
+                .requestId(1)
+                .equipment(equipment2)
+                .issueDescription("Hydraulic system failure")
+                .requestDate(new Date())
+                .status("Pending")
+                .repairActivities(new ArrayList<>(List.of("Check hydraulic pump", "Replace hoses")))
+                .build();
+
+        System.out.println("\nCererea de reparație:");
+        System.out.println(repairRequest);
     }
 }
