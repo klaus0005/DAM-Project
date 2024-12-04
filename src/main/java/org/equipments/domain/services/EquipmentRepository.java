@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Integer> {
-    // Poți adăuga metode personalizate de căutare
+
     List<Equipment> findByStatus(String status);
     List<Equipment> findByType(String type);
 }
