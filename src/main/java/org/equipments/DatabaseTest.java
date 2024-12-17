@@ -19,7 +19,7 @@ public class DatabaseTest implements CommandLineRunner {
 
 
         Equipment equipment1 = Equipment.builder()
-                .id(1)
+                .equipmentId(1)
                 .name("Excavator")
                 .type("Heavy Machinery")
                 .status("Available")
@@ -31,7 +31,7 @@ public class DatabaseTest implements CommandLineRunner {
                 .build();
 
         Equipment equipment2 = Equipment.builder()
-                .id(2)
+                .equipmentId(2)
                 .name("Bulldozer")
                 .type("Heavy Machinery")
                 .status("In Use")

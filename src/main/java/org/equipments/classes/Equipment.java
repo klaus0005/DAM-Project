@@ -1,7 +1,6 @@
 package org.equipments.classes;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,9 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Component
+@Entity
 public class Equipment {
     @Id @GeneratedValue
-    private int id;
+    private int equipmentId;
     private String name;
     private String type;
     private String status;
@@ -28,6 +28,10 @@ public class Equipment {
     private List<Maintenance> maintenanceHistory;
     private List<RepairRequest> repairHistory;
 
-    public Equipment(int id, String name, String type, String status, String location, double price) {
+    @ManyToOne
+    @JoinColumn(name = "id_acquisition")
+    private Acquisition acquisition;
+
+    public Equipment(int equipmentId, String name, String type, String status, String location, double price) {
     }
 }
