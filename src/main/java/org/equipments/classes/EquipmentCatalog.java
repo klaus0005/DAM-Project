@@ -1,5 +1,9 @@
 package org.equipments.classes;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,10 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class EquipmentCatalog {
     private List<Equipment> equipmentList = new ArrayList<>();
 
+    @Id @GeneratedValue
+    private int equipmentCatalogId;
 
     public void addEquipment(Equipment equipment) {
         equipmentList.add(equipment);

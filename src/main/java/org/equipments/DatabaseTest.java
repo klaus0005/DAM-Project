@@ -64,7 +64,10 @@ public class DatabaseTest implements CommandLineRunner {
         System.out.println(acquisition);
 
         // Crearea unui catalog de echipamente și adăugarea echipamentelor
-        EquipmentCatalog catalog = new EquipmentCatalog();
+//        EquipmentCatalog catalog = new EquipmentCatalog();
+        EquipmentCatalog catalog = EquipmentCatalog.builder()
+                .equipmentCatalogId(1)
+                .build();
         catalog.addEquipment(equipment1);
         catalog.addEquipment(equipment2);
 

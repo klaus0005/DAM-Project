@@ -1,5 +1,7 @@
 package org.equipments.classes;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.List;
 @Builder
 @Component
 public class Equipment {
+    @Id @GeneratedValue
     private int id;
     private String name;
     private String type;

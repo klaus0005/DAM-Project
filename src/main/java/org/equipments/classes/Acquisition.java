@@ -1,5 +1,7 @@
 package org.equipments.classes;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Acquisition {
+    @Id @GeneratedValue
     private int acquisitionId;
     private Date acquisitionDate;
     private double totalAmount;
