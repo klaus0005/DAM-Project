@@ -14,10 +14,10 @@ public class DatabaseTest implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Crearea unei liste de echipamente
+
         List<Equipment> equipmentList = new ArrayList<>();
 
-        // Popularea listei de echipamente
+
         Equipment equipment1 = Equipment.builder()
                 .id(1)
                 .name("Excavator")
@@ -42,17 +42,17 @@ public class DatabaseTest implements CommandLineRunner {
                 .repairHistory(new ArrayList<>())
                 .build();
 
-        // Adăugarea echipamentelor în listă
+
         equipmentList.add(equipment1);
         equipmentList.add(equipment2);
 
-        // Afișarea echipamentelor
+
         System.out.println("Lista de echipamente:");
         for (Equipment equipment : equipmentList) {
             System.out.println(equipment);
         }
 
-        // Crearea unei achiziții care conține echipamentele
+
         Acquisition acquisition = Acquisition.builder()
                 .acquisitionId(1)
                 .acquisitionDate(new Date())
@@ -63,7 +63,6 @@ public class DatabaseTest implements CommandLineRunner {
         System.out.println("\nAchiziția creată:");
         System.out.println(acquisition);
 
-        // Crearea unui catalog de echipamente și adăugarea echipamentelor
 //        EquipmentCatalog catalog = new EquipmentCatalog();
         EquipmentCatalog catalog = EquipmentCatalog.builder()
                 .equipmentCatalogId(1)
@@ -77,7 +76,7 @@ public class DatabaseTest implements CommandLineRunner {
             System.out.println(eq);
         }
 
-        // Crearea unei reparații și adăugarea activităților de reparație
+        
         RepairRequest repairRequest = RepairRequest.builder()
                 .requestId(1)
                 .equipment(equipment2)
