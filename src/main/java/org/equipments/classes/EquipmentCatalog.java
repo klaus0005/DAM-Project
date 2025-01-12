@@ -1,11 +1,11 @@
 package org.equipments.classes;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Component
+@Entity
 public class EquipmentCatalog {
-    private List<Equipment> equipmentList = new ArrayList<>();
-
     @Id @GeneratedValue
     private int equipmentCatalogId;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "catalog_id")
+    private List<Equipment> equipmentList;
 
     public void addEquipment(Equipment equipment) {
         equipmentList.add(equipment);

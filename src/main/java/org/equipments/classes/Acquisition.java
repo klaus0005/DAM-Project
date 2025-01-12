@@ -20,6 +20,6 @@ public class Acquisition {
     private Date acquisitionDate;
     private double totalAmount;
 
-    @OneToMany(mappedBy = "acquisition", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "acquisition", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Equipment> equipmentList;
 }
