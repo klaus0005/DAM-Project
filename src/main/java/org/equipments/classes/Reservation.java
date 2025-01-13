@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Builder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -28,4 +29,19 @@ public class Reservation {
 
     private Date reservationDate;
     private Date returnDate;
+
+    public void setId(int i) {
+        this.reservationId = reservationId;
+    }
+
+    public void setStartTime(LocalDateTime now) {
+        this.reservationDate = reservationDate;
+    }
+
+    public void setEndTime(LocalDateTime localDateTime) {
+    }
+
+    public int getId() {
+        return reservationId;
+    }
 }
