@@ -1,7 +1,10 @@
 package org.equipments.domain.services;
 
 import org.equipments.classes.Equipment;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
+
 
 public interface EquipmentService {
     List<Equipment> getAllEquipment();
@@ -17,4 +20,6 @@ public interface EquipmentService {
     Equipment findMostExpensiveEquipment();
     boolean isEquipmentAvailable(int id);
     List<Equipment> filterByPriceRange(double minPrice, double maxPrice);
+
+    Equipment saveEquipment(Equipment equipment);
 }

@@ -15,6 +15,8 @@ import java.util.List;
 @Builder
 @Component
 @Entity
+
+@Table(name = "users")
 public class User {
     @Id @GeneratedValue
     private int userId;

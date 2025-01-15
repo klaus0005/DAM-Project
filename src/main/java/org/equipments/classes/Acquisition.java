@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,5 +22,5 @@ public class Acquisition {
     private double totalAmount;
 
     @OneToMany(mappedBy = "acquisition", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Equipment> equipmentList;
+    private List<Equipment> equipmentList= new ArrayList<>();
 }

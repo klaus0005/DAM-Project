@@ -1,12 +1,14 @@
 package org.equipments.domain.services;
 
 import org.equipments.classes.Equipment;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EquipmentServiceImpl implements EquipmentService {
 
     private final List<Equipment> equipmentList = new ArrayList<>();
@@ -85,6 +87,11 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public List<Equipment> filterByPriceRange(double minPrice, double maxPrice) {
+        return null;
+    }
+
+    @Override
+    public Equipment saveEquipment(Equipment equipment) {
         return null;
     }
 }

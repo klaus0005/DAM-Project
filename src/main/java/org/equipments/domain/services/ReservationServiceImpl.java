@@ -1,10 +1,12 @@
 package org.equipments.domain.services;
 import org.equipments.classes.Reservation;
+import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
 
@@ -19,8 +21,12 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void cancelReservation(int reservationId) {
-        reservationRepository.delete(reservationId);
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Reservation not found with ID: " + reservationId));
+
+        reservationRepository.delete(reservation);
     }
+
 
     @Override
     public Reservation getReservationDetails(int reservationId) {
@@ -39,4 +45,10 @@ public class ReservationServiceImpl implements ReservationService {
         return ChronoUnit.DAYS.between(
                 reservation.getReservationDate().toInstant(),
                 reservation.getReturnDate().toInstant()
-        );}}
+        );}
+
+    @Override
+    public Reservation saveReservation(Reservation reservation) {
+        return null;
+    }
+}

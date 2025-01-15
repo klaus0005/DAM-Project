@@ -1,6 +1,7 @@
 package rest.services;
 
 import org.equipments.classes.Equipment;
+import org.equipments.dto.EquipmentDTO;
 import org.junit.jupiter.api.*;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
@@ -14,61 +15,58 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Test_EquipmentRestService {
 
     private static final Logger logger = Logger.getLogger(Test_EquipmentRestService.class.getName());
-    private static final String BASE_URL = "http://localhost:8080/api/equipment";
+    private static final String BASE_URL = "/api/equipment";
     private static RestTemplate restTemplate = new RestTemplate();
     private static int testEquipmentId;
 
     @Test
     @Order(1)
     public void test_addEquipment() {
-        logger.info("Testing: Add Equipment");
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
+        equipmentDTO.setName("Test Equipment");
+        equipmentDTO.setType("Type1");
+        equipmentDTO.setStatus("Available");
+        equipmentDTO.setPrice(1500.00);
+        equipmentDTO.setLocation("Warehouse");
 
-        Equipment equipment = new Equipment();
-        equipment.setName("Test Equipment");
-        equipment.setPrice(1500.00);
-        equipment.setStatus("Available");
-        equipment.setLocation("Warehouse");
-
-        ResponseEntity<Equipment> response = restTemplate.postForEntity(BASE_URL, equipment, Equipment.class);
+        ResponseEntity<EquipmentDTO> response = restTemplate.postForEntity(BASE_URL, equipmentDTO, EquipmentDTO.class);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertNotNull(response.getBody().getId());
-
-        testEquipmentId = response.getBody().getId(); // Save for further tests
-        logger.info("Added Equipment ID: " + testEquipmentId);
+        assertNotNull(response.getBody().getEquipmentId());
     }
 
     @Test
     @Order(2)
-    public void test_getEquipmentById() {
+    public void testGetEquipmentById() {
         logger.info("Testing: Get Equipment by ID");
 
         String url = BASE_URL + "/" + testEquipmentId;
-        ResponseEntity<Equipment> response = restTemplate.getForEntity(url, Equipment.class);
+        ResponseEntity<EquipmentDTO> response = restTemplate.getForEntity(url, EquipmentDTO.class);
+
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals(testEquipmentId, response.getBody().getId());
+        assertEquals(testEquipmentId, response.getBody().getEquipmentId());
     }
 
     @Test
     @Order(3)
-    public void test_updateEquipment() {
+    public void testUpdateEquipment() {
         logger.info("Testing: Update Equipment");
 
         String url = BASE_URL + "/" + testEquipmentId;
-        Equipment updatedEquipment = new Equipment();
-        updatedEquipment.setName("Updated Equipment");
-        updatedEquipment.setPrice(2000.00);
-        updatedEquipment.setStatus("In Use");
-        updatedEquipment.setLocation("On Site");
+
+
+        EquipmentDTO updatedEquipmentDTO = new EquipmentDTO("Updated Equipment", 2000.00, "In Use", "On Site");
+
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Equipment> request = new HttpEntity<>(updatedEquipment, headers);
+        HttpEntity<EquipmentDTO> request = new HttpEntity<>(updatedEquipmentDTO, headers);
 
-        ResponseEntity<Equipment> response = restTemplate.exchange(url, HttpMethod.PUT, request, Equipment.class);
+
+        ResponseEntity<EquipmentDTO> response = restTemplate.exchange(url, HttpMethod.PUT, request, EquipmentDTO.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
@@ -77,8 +75,9 @@ public class Test_EquipmentRestService {
 
     @Test
     @Order(4)
-    public void test_getAllEquipment() {
+    public void testGetAllEquipment() {
         logger.info("Testing: Get All Equipment");
+
 
         ResponseEntity<List> response = restTemplate.getForEntity(BASE_URL, List.class);
 
@@ -89,8 +88,9 @@ public class Test_EquipmentRestService {
 
     @Test
     @Order(5)
-    public void test_calculateTotalValue() {
+    public void testCalculateTotalValue() {
         logger.info("Testing: Calculate Total Value");
+
 
         String url = BASE_URL + "/total-value";
         ResponseEntity<Double> response = restTemplate.getForEntity(url, Double.class);
@@ -102,14 +102,14 @@ public class Test_EquipmentRestService {
 
     @Test
     @Order(6)
-    public void test_deleteEquipment() {
+    public void testDeleteEquipment() {
         logger.info("Testing: Delete Equipment");
+
 
         String url = BASE_URL + "/" + testEquipmentId;
         restTemplate.delete(url);
 
-        ResponseEntity<Equipment> response = restTemplate.getForEntity(url, Equipment.class);
+        ResponseEntity<EquipmentDTO> response = restTemplate.getForEntity(url, EquipmentDTO.class);
 
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-    }
-}
+    }}

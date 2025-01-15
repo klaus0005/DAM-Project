@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.logging.Logger;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.equipments")
 public class SpringBootDI_ScrumApplication
 {
 	private static Logger logger = Logger.getLogger(SpringBootDI_ScrumApplication.class.getName());

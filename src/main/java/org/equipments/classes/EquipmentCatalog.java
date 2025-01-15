@@ -25,8 +25,12 @@ public class EquipmentCatalog {
     private List<Equipment> equipmentList;
 
     public void addEquipment(Equipment equipment) {
+        if (equipmentList == null) {
+            equipmentList = new ArrayList<>();
+        }
         equipmentList.add(equipment);
     }
+
 
 
     public List<Equipment> searchByType(String type) {
@@ -49,4 +53,6 @@ public class EquipmentCatalog {
         }
         return result;
     }
+
+
 }

@@ -2,6 +2,7 @@ package org.equipments.RestServices;
 
 import org.equipments.classes.Equipment;
 import org.equipments.domain.services.EquipmentService;
+import org.equipments.dto.EquipmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,86 +14,72 @@ import java.util.List;
 @RequestMapping("/api/equipment")
 public class EquipmentRestService {
 
-    @Autowired
-    private EquipmentService equipmentService;
+    private final EquipmentService equipmentService;
 
-    // Get all equipment
-    @GetMapping
-    public List<Equipment> getAllEquipment() {
-        return equipmentService.getAllEquipment();
+    public EquipmentRestService(EquipmentService equipmentService) {
+        this.equipmentService = equipmentService;
     }
 
-    // Get equipment by ID
+    @GetMapping
+    public List<EquipmentDTO> getAllEquipment() {
+        return equipmentService.getAllEquipment().stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Equipment> getEquipmentById(@PathVariable int id) {
+    public ResponseEntity<EquipmentDTO> getEquipmentById(@PathVariable int id) {
         Equipment equipment = equipmentService.getEquipmentById(id);
         if (equipment != null) {
-            return ResponseEntity.ok(equipment);
+            return ResponseEntity.ok(convertToDTO(equipment));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // Add new equipment
     @PostMapping
-    public ResponseEntity<Equipment> addEquipment(@RequestBody Equipment equipment) {
-        Equipment addedEquipment = equipmentService.addEquipment(equipment);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addedEquipment);
+    public ResponseEntity<EquipmentDTO> addEquipment(@RequestBody EquipmentDTO equipmentDTO) {
+        Equipment equipment = convertToEntity(equipmentDTO);
+        Equipment savedEquipment = equipmentService.addEquipment(equipment);
+        return ResponseEntity.status(HttpStatus.CREATED).body(convertToDTO(savedEquipment));
     }
 
-    // Update equipment
     @PutMapping("/{id}")
-    public ResponseEntity<Equipment> updateEquipment(@PathVariable int id, @RequestBody Equipment updatedEquipment) {
-        Equipment updated = equipmentService.updateEquipment(id, updatedEquipment);
-        if (updated != null) {
-            return ResponseEntity.ok(updated);
+    public ResponseEntity<EquipmentDTO> updateEquipment(@PathVariable int id, @RequestBody EquipmentDTO equipmentDTO) {
+        Equipment updatedEquipment = equipmentService.updateEquipment(id, convertToEntity(equipmentDTO));
+        if (updatedEquipment != null) {
+            return ResponseEntity.ok(convertToDTO(updatedEquipment));
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
-    // Delete equipment
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEquipment(@PathVariable int id) {
         equipmentService.deleteEquipment(id);
         return ResponseEntity.noContent().build();
     }
 
-    // Get equipment by status
-    @GetMapping("/status/{status}")
-    public List<Equipment> getEquipmentByStatus(@PathVariable String status) {
-        return equipmentService.getEquipmentByStatus(status);
+    // Alte metode vor fi refactorizate similar...
+
+    private EquipmentDTO convertToDTO(Equipment equipment) {
+        return new EquipmentDTO(
+                equipment.getEquipmentId(),
+                equipment.getName(),
+                equipment.getType(),
+                equipment.getStatus(),
+                equipment.getAcquisitionDate(),
+                equipment.getPrice(),
+                equipment.getLocation()
+        );
     }
 
-    // Get equipment by location
-    @GetMapping("/location/{location}")
-    public List<Equipment> getEquipmentByLocation(@PathVariable String location) {
-        return equipmentService.getEquipmentByLocation(location);
-    }
-
-    // Calculate total value of equipment
-    @GetMapping("/total-value")
-    public double calculateTotalValue() {
-        return equipmentService.calculateTotalValue();
-    }
-
-    // Find most expensive equipment
-    @GetMapping("/most-expensive")
-    public ResponseEntity<Equipment> findMostExpensiveEquipment() {
-        Equipment equipment = equipmentService.findMostExpensiveEquipment();
-        if (equipment != null) {
-            return ResponseEntity.ok(equipment);
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    // Check if equipment is available
-    @GetMapping("/{id}/available")
-    public boolean isEquipmentAvailable(@PathVariable int id) {
-        return equipmentService.isEquipmentAvailable(id);
-    }
-
-    // Filter equipment by price range
-    @GetMapping("/filter-by-price")
-    public List<Equipment> filterByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
-        return equipmentService.filterByPriceRange(minPrice, maxPrice);
+    private Equipment convertToEntity(EquipmentDTO equipmentDTO) {
+        return new Equipment(
+                equipmentDTO.getEquipmentId(),
+                equipmentDTO.getName(),
+                equipmentDTO.getType(),
+                equipmentDTO.getStatus(),
+                equipmentDTO.getLocation(),
+                equipmentDTO.getPrice()
+        );
     }
 }

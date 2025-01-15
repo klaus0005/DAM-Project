@@ -4,6 +4,7 @@ import org.equipments.classes.Equipment;
 import org.equipments.classes.Reservation;
 import org.equipments.classes.User;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ReservationServiceImplTest {
+    private ReservationService reservationService;
+
+    @Autowired
+    public void ReservationRestService(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
+
+    public ReservationServiceImplTest(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @Test
     public void testCreateReservation() {

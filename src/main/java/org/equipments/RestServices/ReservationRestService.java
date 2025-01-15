@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/reservations")
+@RequestMapping("http://localhost:8080/api/reservations")
 public class ReservationRestService {
 
     @Autowired
